@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+input,
+select,
+textarea {
+  color: inherit;
+}
+
+option {
+  color: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #64748b;
+}
+
+/* Premium Toast Close Button - Vertically Centered on the Right Inside the Card */
+[data-sonner-toast] {
+  padding-right: 42px !important;
+}
+
+[data-close-button] {
+  top: 50% !important;
+  right: 12px !important;
+  left: auto !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+[data-close-button]:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.dark [data-close-button]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
