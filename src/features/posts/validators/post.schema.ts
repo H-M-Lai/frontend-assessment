@@ -10,8 +10,14 @@ export const postSchema = z.object({
 
     description: z
         .string()
-        .min(20)
-        .max(500),
+        .refine(
+            (val) => val.replace(/<[^>]*>/g, '').trim().length >= 20,
+            { message: 'Description must be at least 20 characters' },
+        )
+        .refine(
+            (val) => val.replace(/<[^>]*>/g, '').trim().length <= 500,
+            { message: 'Description must be at most 500 characters' },
+        ),
 
     mediaType: z.enum(MediaType),
 

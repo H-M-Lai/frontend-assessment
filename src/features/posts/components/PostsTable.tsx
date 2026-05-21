@@ -116,7 +116,7 @@ export function PostsTable({ posts, onDelete, footer }: PostsTableProps) {
                     )}
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-semibold text-slate-950 dark:text-slate-100">{post.title}</p>
-                      <p className="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">{post.description}</p>
+                      <p className="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">{post.description.replace(/<[^>]*>/g, '')}</p>
                     </div>
                   </div>
                 </td>
