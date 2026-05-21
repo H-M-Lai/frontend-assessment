@@ -5,6 +5,7 @@ import { Film, Image, Link as LinkIcon, Trash2, UploadCloud } from 'lucide-react
 import { MediaType, Post } from '../types/post.types'
 import { PostFormData, postSchema } from '../validators/post.schema'
 import { getEmbeddableVideoUrl, detectMediaType } from '../utils/media.utils'
+import { RichTextEditor } from './RichTextEditor'
 
 type PostFormProps = {
   mode: 'create' | 'edit'
@@ -141,19 +142,19 @@ export function PostForm({ mode, initialValues, onSubmit, disabled = false }: Po
         {errors.title ? <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.title.message}</p> : null}
       </div>
 
-      {/* Description */}
+      {/* Description — Rich Text Editor */}
       <div>
-        <label htmlFor="description" className={labelClass}>
+        <label className={labelClass}>
           Description
         </label>
-        <textarea
-          id="description"
-          disabled={isDisabled}
-          rows={5}
-          placeholder="Write your article summary or excerpt..."
-          className={inputClass}
-          {...register('description')}
-        />
+        <div className="mt-1">
+          <RichTextEditor
+            content={watch('description')}
+            onChange={(html) => setValue('description', html, { shouldValidate: true })}
+            disabled={isDisabled}
+            placeholder="Write your article summary or excerpt..."
+          />
+        </div>
         {errors.description ? (
           <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.description.message}</p>
         ) : null}

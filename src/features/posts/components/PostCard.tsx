@@ -65,7 +65,7 @@ export function PostCard({ post }: PostCardProps) {
         </div>
         
         <p className="mt-1.5 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
-          {post.description}
+          {post.description.replace(/<[^>]*>/g, '')}
         </p>
 
         <div className="mt-auto pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 text-[11px] text-slate-500 dark:text-slate-400">

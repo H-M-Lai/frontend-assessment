@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@tiptap/extension-placeholder": "^3.23.5",
+    "@tiptap/pm": "^3.23.5",
+    "@tiptap/react": "^3.23.5",
+    "@tiptap/starter-kit": "^3.23.5",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.20",
     "lucide-react": "^1.16.0",

@@ -215,9 +215,7 @@ export default function PostDetailPage() {
 
             {/* Actual Article Body Copy */}
             <div className="prose prose-slate dark:prose-invert max-w-none pt-4">
-              <p className="text-lg leading-relaxed text-slate-800 dark:text-slate-300 whitespace-pre-wrap font-serif">
-                {post.description}
-              </p>
+              <div className="rich-content text-lg leading-relaxed text-slate-800 dark:text-slate-300 font-serif" dangerouslySetInnerHTML={{ __html: post.description }} />
             </div>
           </div>
         </div>
@@ -291,9 +289,7 @@ export default function PostDetailPage() {
 
             {/* Actual Article Body Copy */}
             <div className="prose prose-slate dark:prose-invert max-w-none pt-2">
-              <p className="text-base leading-relaxed text-slate-800 dark:text-slate-300 whitespace-pre-wrap">
-                {post.description}
-              </p>
+              <div className="rich-content text-base leading-relaxed text-slate-800 dark:text-slate-300" dangerouslySetInnerHTML={{ __html: post.description }} />
             </div>
           </div>
 

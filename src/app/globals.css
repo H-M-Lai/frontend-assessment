@@ -52,3 +52,105 @@ textarea::placeholder {
   background: rgba(255, 255, 255, 0.1) !important;
 }
 
+/* ── TipTap Rich Text Editor ── */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #94a3b8;
+  pointer-events: none;
+  height: 0;
+}
+
+.tiptap:focus {
+  outline: none;
+}
+
+.tiptap h1 { font-size: 1.5rem; font-weight: 700; margin: 0.75rem 0 0.25rem; }
+.tiptap h2 { font-size: 1.25rem; font-weight: 600; margin: 0.75rem 0 0.25rem; }
+.tiptap h3 { font-size: 1.1rem; font-weight: 600; margin: 0.5rem 0 0.25rem; }
+.tiptap ul { list-style: disc; padding-left: 1.25rem; margin: 0.5rem 0; }
+.tiptap ol { list-style: decimal; padding-left: 1.25rem; margin: 0.5rem 0; }
+.tiptap blockquote {
+  border-left: 3px solid #cbd5e1;
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+  color: #64748b;
+}
+.dark .tiptap blockquote {
+  border-left-color: #475569;
+  color: #94a3b8;
+}
+.tiptap pre {
+  background: #f1f5f9;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  font-family: monospace;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+.dark .tiptap pre {
+  background: #1e293b;
+}
+.tiptap code {
+  background: #f1f5f9;
+  border-radius: 0.25rem;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.85em;
+}
+.dark .tiptap code {
+  background: #1e293b;
+}
+.tiptap a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+.dark .tiptap a {
+  color: #60a5fa;
+}
+
+/* ── Rendered rich-text content (detail / preview pages) ── */
+.rich-content h1 { font-size: 1.5rem; font-weight: 700; margin: 0.75rem 0 0.25rem; }
+.rich-content h2 { font-size: 1.25rem; font-weight: 600; margin: 0.75rem 0 0.25rem; }
+.rich-content h3 { font-size: 1.1rem; font-weight: 600; margin: 0.5rem 0 0.25rem; }
+.rich-content ul { list-style: disc; padding-left: 1.25rem; margin: 0.5rem 0; }
+.rich-content ol { list-style: decimal; padding-left: 1.25rem; margin: 0.5rem 0; }
+.rich-content blockquote {
+  border-left: 3px solid #cbd5e1;
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+  color: #64748b;
+}
+.dark .rich-content blockquote {
+  border-left-color: #475569;
+  color: #94a3b8;
+}
+.rich-content pre {
+  background: #f1f5f9;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  font-family: monospace;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+.dark .rich-content pre {
+  background: #1e293b;
+}
+.rich-content code {
+  background: #f1f5f9;
+  border-radius: 0.25rem;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.85em;
+}
+.dark .rich-content code {
+  background: #1e293b;
+}
+.rich-content a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+.dark .rich-content a {
+  color: #60a5fa;
+}
+
