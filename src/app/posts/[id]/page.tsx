@@ -15,7 +15,7 @@ import { getEmbeddableVideoUrl } from '@/features/posts/utils/media.utils'
 
 export default function PostDetailPage() {
   const params = useParams<{ id: string }>()
-  const { loadPostsFromStorage, getPostById, changeStatus, loading, error } = usePostStore()
+  const { loadPostsFromStorage, getPostById, changeStatus, loading } = usePostStore()
 
   const [isRejectDialogOpen, setIsRejectDialogOpen] = useState(false)
   const [viewMode, setViewMode] = useState<'admin' | 'preview'>('admin')
