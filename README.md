@@ -37,6 +37,7 @@ npx tsc --noEmit
 | Forms          | react-hook-form   | Efficient form state with minimal rerenders.                  |
 | Validation     | Zod               | Reusable schema-based validation for create/edit forms.       |
 | State          | Zustand           | Lightweight global store shared across all post pages.        |
+| Rich Text      | TipTap v3         | Rich description editor with custom link dialog and preview.   |
 | Notifications  | Sonner            | Theme-aware toast notifications via a custom `AppToaster`.    |
 | Dates          | Day.js            | Timestamp formatting and date-range filtering.                |
 | Icons          | lucide-react      | Consistent, lightweight dashboard iconography.                |
@@ -46,6 +47,7 @@ npx tsc --noEmit
 ## Features at a Glance
 
 - **Posts CRUD** — Create, read, update, and delete posts with full form validation.
+- **TipTap Rich Text Editor** — Full description formatting (Bold, Italic, Underline, Strike, H1-H3, Lists, Blockquotes, Code, Links) with HTML-aware Zod character count validation.
 - **Publishing Workflow** — Move posts through `Draft → In Review → Published / Rejected` with guard rules.
 - **Activity Logs** — Every status change and edit is automatically logged with timestamps.
 - **Async Save** — Write operations wait for the simulated request to succeed before updating the UI.
@@ -94,7 +96,8 @@ src/
 │   │   ├── PostCard.tsx            # Grid-view card for a single post
 │   │   ├── PostForm.tsx            # Shared create/edit form (react-hook-form + Zod)
 │   │   ├── PostsTable.tsx          # Table-view with ID, media preview, actions
-│   │   └── PostStatusBadge.tsx     # Colored status pill
+│   │   ├── PostStatusBadge.tsx     # Colored status pill
+│   │   └── RichTextEditor.tsx      # TipTap rich text editor with custom link dialog
 │   ├── store/post.store.ts         # Zustand store (CRUD, workflow, async save)
 │   ├── types/post.types.ts         # Post, PostStatus, MediaType, ActivityLog
 │   ├── utils/
@@ -199,6 +202,7 @@ Displays flag, country name, capital, region, and population. Includes loading s
 
 | Feature                       | Detail                                                                                   |
 | ----------------------------- | ---------------------------------------------------------------------------------------- |
+| Rich Text Editor              | TipTap editor with full custom link dialog popup (no native browser prompts), key bindings (Enter/Esc), and dark mode styles. |
 | Reader Preview                | Segmented toggle on the detail page between Admin View and a clean reader-facing layout.  |
 | Dedicated ID Column           | Monospace column showing the first 8 characters of the post ID (e.g. `#a7c1b3f9`).       |
 | Layout Persistence            | Table/Grid preference saved to `localStorage` and restored on return.                    |
@@ -230,6 +234,7 @@ Displays flag, country name, capital, region, and population. Includes loading s
 | Async save with error handling      |   ✅   | `optimisticSave()`                  |
 | Listing search/filter/sort/pagination |  ✅  | `posts/page.tsx`                    |
 | Reusable create/edit form           |   ✅   | `PostForm.tsx`                      |
+| TipTap Rich Text Editor             |   ✅   | `RichTextEditor.tsx` [Bonus Feature]|
 | Post detail page                    |   ✅   | `posts/[id]/page.tsx`               |
 | Public API integration              |   ✅   | `public-api/page.tsx`               |
 | Loading / error / empty states      |   ✅   | Shared components and pages         |
@@ -241,6 +246,7 @@ Displays flag, country name, capital, region, and population. Includes loading s
 
 | Issue | Root Cause | Solution |
 | ----- | ---------- | -------- |
+| **TipTap React 19 SSR Hydration** | Next.js pre-renders page HTML, causing a mismatch with TipTap's client-only editor state. | Configured `immediatelyRender: true` and resolved starter-kit v3 plugin warnings. |
 | **React Compiler vs uncontrolled refs** | Next.js 15 ships the React 19 Compiler, which aggressively memoizes and breaks `react-hook-form`'s real-time ref reads. | Added `'use no memo'` directive to `PostForm.tsx`. |
 | **Hydration crash on dynamic routes** | `params` is briefly `null` during SSR prerender of `[id]` routes, causing `getPostById(params.id)` to throw. | Guarded with optional chaining (`params?.id ? ... : undefined`). |
 | **Zod v4 + native validation conflict** | Browser HTML5 validation fires before Zod, blocking Zod error messages. | Added `noValidate` to all forms; rely on Zod exclusively. |
